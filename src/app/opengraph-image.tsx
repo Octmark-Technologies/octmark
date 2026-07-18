@@ -7,6 +7,9 @@ import { ImageResponse } from "next/og";
 export const alt = "Octmark, Growth Operations Partner";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
+// Required for output: "export" — this version of Next.js needs image
+// route files to opt in to static rendering explicitly.
+export const dynamic = "force-static";
 
 export default function OpengraphImage() {
   return new ImageResponse(
