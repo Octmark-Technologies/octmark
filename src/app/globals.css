@@ -1,26 +1,269 @@
 @import "tailwindcss";
+@plugin "@tailwindcss/typography";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/* ─────────────────────────────────────────────────────────────────
+   OCTMARK, DESIGN TOKENS & GLOBAL STYLES
+   Brand system frozen 2026-06-21. Do not override outside @theme.
+───────────────────────────────────────────────────────────────── */
+
+@theme {
+
+  /* ── Brand Colours ─────────────────────────────────────────── */
+  --color-brand-blue:        #014584;   /* Primary CTAs, nav, trust elements */
+  --color-brand-blue-hover:  #0157A8;   /* Hover state */
+  --color-brand-blue-light:  #4D9FE0;   /* Accent on dark canvas */
+  --color-brand-blue-bg:     rgba(1, 69, 132, 0.07);
+  --color-brand-coral:       #FEA781;   /* Hover highlights, alerts, emphasis */
+
+  /* ── Text, Light Canvas ───────────────────────────────────── */
+  --color-text-primary:   #3E3E3E;   /* Body copy, primary labels */
+  --color-text-secondary: #52525B;   /* Secondary copy */
+  --color-text-muted:     #9AA3B2;   /* Placeholder, disabled states */
+
+  /* ── Text, Dark Canvas ────────────────────────────────────── */
+  --color-text-on-dark:       #EEF1F7;   /* Primary text on dark bg */
+  --color-text-on-dark-muted: #8A96A8;   /* Secondary text on dark bg */
+  --color-text-on-dark-dim:   #4E5A6C;   /* Tertiary / dimmed on dark */
+
+  /* ── Backgrounds ───────────────────────────────────────────── */
+  --color-bg-light:       #F9F8F5;   /* Public site primary background */
+  --color-bg-cool:        #F2F5F9;   /* Cool gray sections */
+  --color-bg-card:        #F8F9FC;   /* Card backgrounds */
+  --color-bg-dark:        #070D1A;   /* Hero sections, footer, dark pages */
+  --color-bg-dark-mid:    #16161C;   /* Escalation strips */
+
+  /* ── Borders ───────────────────────────────────────────────── */
+  --color-border:         #E5E4E0;   /* Default borders */
+  --color-border-light:   #E0E5EC;   /* Lighter borders */
+  --color-border-on-dark: rgba(255, 255, 255, 0.08);
+
+  /* ── Typography ────────────────────────────────────────────── */
+  --font-display: var(--font-didact),    'Didact Gothic', sans-serif;
+  --font-sans:    var(--font-inter),     'Inter', -apple-system, sans-serif;
+  --font-body:    var(--font-inter),     'Inter', -apple-system, sans-serif;
+  --font-mono:    var(--font-jetbrains), 'JetBrains Mono', monospace;
+
+  /* ── Border Radius ─────────────────────────────────────────── */
+  --radius-sm:  4px;
+  --radius-md:  8px;
+  --radius-lg:  12px;
+  --radius-xl:  16px;
+
+  /* ── Shadows ───────────────────────────────────────────────── */
+  --shadow-card:   0 1px 3px rgba(0, 0, 0, 0.04), 0 4px 12px rgba(0, 0, 0, 0.06);
+  --shadow-nav:    0 1px 0 var(--color-border-light);
+  --shadow-btn:    0 0 0 1px rgba(1, 69, 132, 0.6), 0 4px 16px rgba(1, 69, 132, 0.38);
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+/* ─── Reset ─────────────────────────────────────────────────── */
+*, *::before, *::after {
+  box-sizing: border-box;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* ─── Base ──────────────────────────────────────────────────── */
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-body);
+  color: var(--color-text-primary);
+  background-color: var(--color-bg-light);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ─── Typography Defaults ───────────────────────────────────── */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
+  line-height: 1.2;
+  font-weight: 400;
+}
+
+/* ─── Focus Outline (Accessibility, Frozen Spec) ───────────── */
+*:focus-visible {
+  outline: 2px solid var(--color-brand-blue);
+  outline-offset: 2px;
+}
+
+/* ─── Link Reset ────────────────────────────────────────────── */
+/* Must live in @layer base so Tailwind text-* utilities (in the utilities
+   layer) win, otherwise this unlayered reset overrides every link colour. */
+@layer base {
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+}
+
+/* ─── Skip Link (Accessibility) ─────────────────────────────── */
+.skip-link {
+  position: absolute;
+  top: -60px;
+  left: 24px;
+  background: var(--color-brand-blue);
+  color: #fff;
+  padding: 8px 16px;
+  border-radius: var(--radius-sm);
+  font-size: 14px;
+  z-index: 999;
+  transition: top 150ms ease;
+}
+
+.skip-link:focus {
+  top: 16px;
+}
+
+/* ─── Section Tag Pattern ────────────────────────────────────── */
+.stag {
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-brand-blue);
+  font-family: var(--font-body);
+  font-weight: 600;
+  display: block;
+  margin-bottom: 12px;
+}
+
+/* When .stag is placed inside a flex row and needs inline display */
+.stag.inline-block { display: inline-block; }
+
+.stag-on-dark {
+  color: var(--color-brand-blue-light);
+}
+
+/* ─── Scroll Reveal ─────────────────────────────────────────── */
+[data-reveal] {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 600ms ease, transform 600ms ease;
+}
+
+[data-reveal].visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+[data-reveal][data-delay="1"] { transition-delay: 120ms; }
+[data-reveal][data-delay="2"] { transition-delay: 240ms; }
+[data-reveal][data-delay="3"] { transition-delay: 360ms; }
+[data-reveal][data-delay="4"] { transition-delay: 480ms; }
+
+/* ─── Reduced Motion ─────────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+    transition-delay: 0ms !important;
+  }
+
+  [data-reveal] {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* ─── Prose, MDX Content (Octmark Design System) ─────────────
+   CSS variable overrides for @tailwindcss/typography.
+   Page-level Tailwind modifier classes (prose-headings:*) augment these.
+───────────────────────────────────────────────────────────────── */
+.prose {
+  --tw-prose-body:           #52525B;
+  --tw-prose-headings:       #3E3E3E;
+  --tw-prose-lead:           #52525B;
+  --tw-prose-links:          #014584;
+  --tw-prose-bold:           #3E3E3E;
+  --tw-prose-counters:       #014584;
+  --tw-prose-bullets:        #014584;
+  --tw-prose-hr:             #E0E5EC;
+  --tw-prose-quotes:         #52525B;
+  --tw-prose-quote-borders:  #014584;
+  --tw-prose-code:           #014584;
+  --tw-prose-pre-code:       #3E3E3E;
+  --tw-prose-pre-bg:         #F8F9FC;
+  --tw-prose-th-borders:     #E0E5EC;
+  --tw-prose-td-borders:     #E0E5EC;
+}
+
+/* Headings, Didact Gothic, weight 400 (single weight font) */
+.prose h1, .prose h2, .prose h3, .prose h4, .prose h5, .prose h6 {
+  font-family: var(--font-display);
+  font-weight: 400;
+  letter-spacing: -0.25px;
+  color: #3E3E3E;
+}
+
+/* Blockquote, left-border accent, no curly quotes */
+.prose blockquote {
+  border-left: 3px solid #014584;
+  background: rgba(1, 69, 132, 0.04);
+  padding: 1em 1.25em;
+  border-radius: 0 6px 6px 0;
+  font-style: normal;
+  color: #52525B;
+}
+
+.prose blockquote p::before,
+.prose blockquote p::after {
+  content: "";
+}
+
+/* Inline code, branded pill */
+.prose :not(pre) > code {
+  font-family: var(--font-mono);
+  font-size: 0.875em;
+  background: rgba(1, 69, 132, 0.07);
+  border: 1px solid rgba(1, 69, 132, 0.15);
+  border-radius: 4px;
+  padding: 0.15em 0.4em;
+  color: #014584;
+  font-weight: 400;
+}
+
+.prose :not(pre) > code::before,
+.prose :not(pre) > code::after {
+  content: "";
+}
+
+/* Code blocks */
+.prose pre {
+  background: #F8F9FC;
+  border: 1px solid #E0E5EC;
+  border-radius: 8px;
+}
+
+.prose pre code {
+  font-family: var(--font-mono);
+  color: #3E3E3E;
+  font-size: 0.875em;
+}
+
+/* Tables */
+.prose table {
+  font-family: var(--font-sans);
+  font-size: 0.9em;
+}
+
+.prose thead {
+  background: rgba(1, 69, 132, 0.05);
+  border-bottom: 2px solid #014584;
+}
+
+.prose thead th {
+  font-family: var(--font-display);
+  font-weight: 400;
+  color: #3E3E3E;
+}
+
+/* Links */
+.prose a {
+  text-underline-offset: 3px;
+  transition: color 150ms;
+}
+
+.prose a:hover {
+  color: #0157A8;
 }
