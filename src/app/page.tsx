@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 const SOCIALS = [
   {
     label: "LinkedIn",
-    href: "https://www.linkedin.com/company/octmark",
+    href: "https://www.linkedin.com/company/octmark-technologies/",
     path: "M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7H10v-7a6 6 0 0 1 6-6z",
     extra: (
       <>
@@ -23,7 +23,7 @@ const SOCIALS = [
   },
   {
     label: "Instagram",
-    href: "https://www.instagram.com/octmark",
+    href: "https://www.instagram.com/weareoctmark",
     path: "M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z",
     extra: (
       <>
