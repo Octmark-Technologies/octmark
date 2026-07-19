@@ -53,7 +53,7 @@ export default function HomePage() {
 
       <div className="relative z-10 flex-1 flex flex-col items-center justify-center text-center px-6 py-24">
         <Image
-          src="/images/OCTMARK_LOGO_WHITE.png"
+          src={`${process.env.NEXT_PUBLIC_BASE_PATH ?? ""}/images/OCTMARK_LOGO_WHITE.png`}
           alt="Octmark"
           height={34}
           width={140}
