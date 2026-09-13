@@ -138,7 +138,7 @@ const FAQS = [
 ];
 
 export default function DigitalMarketingForRealtorsPage() {
-  const baseUrl = process.env.NEXT_PUBLIC_APP_URL ?? "https://octmarktechnologies.com";
+  const baseUrl = process.env.NEXT_PUBLIC_APP_URL ?? "https://www.octmark.com";
 
   const serviceJsonLd = {
     "@context": "https://schema.org",

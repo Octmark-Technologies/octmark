@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { Didact_Gothic, Inter, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 
+const SITE_URL = process.env.NEXT_PUBLIC_APP_URL ?? "https://www.octmark.com";
+
 const didactGothic = Didact_Gothic({
   weight: "400",
   subsets: ["latin"],
@@ -30,11 +32,15 @@ export const metadata: Metadata = {
   },
   description:
     "Octmark helps growth-stage businesses build the systems that compound. Fewer guesses. More growth.",
-  metadataBase: new URL("https://octmarktechnologies.com"),
+  metadataBase: new URL(SITE_URL),
+  alternates: {
+    canonical: "/",
+  },
   openGraph: {
     siteName: "Octmark",
     locale: "en_IN",
     type: "website",
+    url: SITE_URL,
   },
   twitter: {
     card: "summary_large_image",
@@ -46,13 +52,12 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const baseUrl = process.env.NEXT_PUBLIC_APP_URL ?? "https://octmarktechnologies.com";
   const orgJsonLd = {
     "@context": "https://schema.org",
     "@type": "Organization",
     name: "Octmark",
-    url: baseUrl,
-    logo: `${baseUrl}/images/OCTMARK_LOGO.png`,
+    url: SITE_URL,
+    logo: `${SITE_URL}/images/OCTMARK_LOGO.png`,
     description:
       "Octmark helps growth-stage businesses build the systems that compound. Fewer guesses. More growth.",
   };
