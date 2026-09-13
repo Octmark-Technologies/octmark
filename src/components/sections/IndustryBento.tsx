@@ -46,6 +46,8 @@ interface Industry {
   /** Wide tiles use a two-column internal layout on large screens. */
   featured?: boolean;
   span: string;
+  /** Override the default "/start" CTA target for this sector. */
+  href?: string;
 }
 
 const INDUSTRIES: Industry[] = [
@@ -109,6 +111,7 @@ const INDUSTRIES: Industry[] = [
       "Local and programmatic reach for the right buyers.",
     ],
     span: "lg:col-span-5",
+    href: "/digital-marketing-for-realtors",
   },
   {
     slug: "ecommerce",
@@ -310,7 +313,7 @@ function Card({ ind, i }: { ind: Industry; i: number }) {
           )}
 
           <Link
-            href="/start"
+            href={ind.href ?? "/start"}
             className={`${ind.featured ? "" : "mt-auto"} inline-flex items-center gap-1.5 text-[14px] font-display transition-all hover:gap-2.5`}
             style={{ color: ind.accent }}
           >
