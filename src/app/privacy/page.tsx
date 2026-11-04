@@ -139,6 +139,14 @@ export default function PrivacyPage() {
                         time slot and any notes you add.
                       </>,
                       <>
+                        <strong>WhatsApp.</strong> If you message us on WhatsApp or share your phone
+                        number with us, we process your phone number, WhatsApp profile name, the
+                        messages and any files you send, and message delivery and read statuses, so we
+                        can respond to you and follow up on your enquiry. We send business-initiated
+                        WhatsApp messages only to people who have opted in, and you can reply STOP at
+                        any time to stop receiving them.
+                      </>,
+                      <>
                         <strong>Spam protection.</strong> Our forms use Cloudflare Turnstile, which
                         processes technical signals such as IP address and browser characteristics to
                         tell people from bots.
@@ -200,6 +208,15 @@ export default function PrivacyPage() {
                       <>
                         <strong>Zoho</strong> (CRM, Desk and Bookings): stores enquiries, support
                         tickets and bookings.
+                      </>,
+                      <>
+                        <strong>Meta Platforms</strong> (WhatsApp Business Platform): delivers the
+                        WhatsApp messages we send and receive. Meta&apos;s own terms and privacy policy
+                        apply to its processing.
+                      </>,
+                      <>
+                        <strong>Gallabox</strong> (WhatsApp Business solution provider): hosts our
+                        WhatsApp inbox and stores our WhatsApp conversations and contacts.
                       </>,
                       <>
                         <strong>Cloudflare</strong> (Turnstile and CDN): spam protection and content
