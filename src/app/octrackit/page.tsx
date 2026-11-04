@@ -13,6 +13,7 @@ import {
   TrendUp as TrendingUp,
   RocketLaunch as Rocket,
   Target,
+  WhatsappLogo as MessageCircle,
 } from "@phosphor-icons/react/dist/ssr";
 import GlobalHeader from "@/components/global/GlobalHeader";
 import GlobalFooter from "@/components/global/GlobalFooter";
@@ -79,6 +80,11 @@ const FEATURES = [
     icon: Sparkles,
     title: "AI Suggestions & Insights",
     desc: "Actionable recommendations on where to shift budget and what to prioritise next, grounded in signal quality, not guesswork.",
+  },
+  {
+    icon: MessageCircle,
+    title: "WhatsApp Module",
+    desc: "Connect your WhatsApp Business number: Cortex AI replies to leads, qualifies them, and syncs them to your CRM and ad platforms.",
   },
 ];
 
@@ -162,6 +168,7 @@ export default function OctrackitPage() {
       "Native OAuth integrations (Meta, Google, Trello)",
       "Multi-client portfolio with role-based access control",
       "AI budget and prioritisation suggestions",
+      "WhatsApp module: Cortex AI replies to leads, qualifies them, and syncs them to your CRM and ad platforms",
     ],
   };
 
