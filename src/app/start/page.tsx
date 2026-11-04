@@ -69,7 +69,7 @@ const FAQS = [
   {
     question: "I'd rather talk to someone first. Is that possible?",
     answer:
-      "Yes. Below the brief form there is a link to book a 30-minute call. That conversation is not a sales call, it's a diagnostic conversation. You can also email directly at hello@octmark.io if you'd prefer.",
+      "Yes. Below the brief form there is a link to book a 30-minute call. That conversation is not a sales call, it's a diagnostic conversation. You can also email directly at info@octmarktechnologies.com if you'd prefer.",
   },
 ];
 
@@ -182,10 +182,10 @@ export default function StartPage() {
               </a>
               <div className="flex items-center justify-center gap-5 mt-6 flex-wrap">
                 <a
-                  href="mailto:hello@octmark.io"
+                  href="mailto:info@octmarktechnologies.com"
                   className="text-[16px] text-[#EEF1F7] font-sans hover:text-[#4D9FE0] transition-colors"
                 >
-                  hello@octmark.io
+                  info@octmarktechnologies.com
                 </a>
               </div>
             </ScrollReveal>

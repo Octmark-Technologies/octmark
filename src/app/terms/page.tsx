@@ -13,7 +13,7 @@ export const metadata: Metadata = {
 
 const EFFECTIVE_DATE = "4 November 2026";
 const LEGAL_NAME = "Octmark Technologies India Private Limited";
-const CONTACT_EMAIL = "hello@octmark.io";
+const CONTACT_EMAIL = "info@octmarktechnologies.com";
 
 function Section({ title, children }: { title: string; children: ReactNode }) {
   return (

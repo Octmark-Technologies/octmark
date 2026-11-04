@@ -210,7 +210,7 @@ export default function TicketForm() {
           }}
         >
           Something went wrong, please try again or email{" "}
-          <a href="mailto:hello@octmark.io" className="underline">hello@octmark.io</a>
+          <a href="mailto:info@octmarktechnologies.com" className="underline">info@octmarktechnologies.com</a>
         </div>
       )}
     </form>

@@ -297,8 +297,8 @@ export default function BriefForm() {
             }}
           >
             Something went wrong, please try again, or email us directly at{" "}
-            <a href="mailto:hello@octmark.io" className="underline">
-              hello@octmark.io
+            <a href="mailto:info@octmarktechnologies.com" className="underline">
+              info@octmarktechnologies.com
             </a>
           </div>
         )}

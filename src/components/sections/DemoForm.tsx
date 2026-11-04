@@ -157,7 +157,7 @@ export default function DemoForm() {
         <div className="mt-3 px-3.5 py-3 rounded-[4px] text-[13px] font-sans"
           style={{ background: "rgba(212,79,79,0.06)", border: "1px solid rgba(212,79,79,0.20)", color: "#A33030" }}>
           Something went wrong, please try again or email{" "}
-          <a href="mailto:hello@octmark.io" className="underline">hello@octmark.io</a>
+          <a href="mailto:info@octmarktechnologies.com" className="underline">info@octmarktechnologies.com</a>
         </div>
       )}
     </form>
