@@ -43,8 +43,7 @@ export default function TermsPage() {
                 These terms govern your use of octmark.com (the &quot;Website&quot;) and your
                 engagement of our agency services. The Website and services are provided by{" "}
                 <strong>{LEGAL_NAME}</strong> (&quot;Octmark,&quot; &quot;we,&quot; &quot;us&quot;),
-                a company incorporated in India with its registered address at 8-39/1, Narayanapuram
-                Colony, Dammaiguda, Nagaram (K.V. Rangareddy), Hyderabad, Telangana 500083, India.
+                a company incorporated in India with its registered office in Hyderabad, Telangana, India.
               </p>
               <p>
                 By using the Website you agree to these terms. If you engage us for services, a
@@ -173,8 +172,7 @@ export default function TermsPage() {
               <p>
                 {LEGAL_NAME}
                 <br />
-                8-39/1, Narayanapuram Colony, Dammaiguda, Nagaram (K.V. Rangareddy), Hyderabad,
-                Telangana 500083, India
+                Hyderabad, Telangana, India
                 <br />
                 Email:{" "}
                 <a href={`mailto:${CONTACT_EMAIL}`} className={linkClass}>

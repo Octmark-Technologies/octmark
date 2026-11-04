@@ -115,8 +115,7 @@ export default function PrivacyPage() {
                     controller (GDPR).
                   </p>
                   <p>
-                    Registered address: 8-39/1, Narayanapuram Colony, Dammaiguda, Nagaram (K.V.
-                    Rangareddy), Hyderabad, Telangana 500083, India.
+                    Registered office: Hyderabad, Telangana, India.
                   </p>
                   <p>
                     When we process personal data on behalf of a client as part of an engagement (for
@@ -328,8 +327,7 @@ export default function PrivacyPage() {
                     <p className="text-[#3E3E3E]">Grievance Officer</p>
                     <p>{LEGAL_NAME}</p>
                     <p>
-                      8-39/1, Narayanapuram Colony, Dammaiguda, Nagaram (K.V. Rangareddy), Hyderabad,
-                      Telangana 500083, India
+                      Hyderabad, Telangana, India
                     </p>
                     <p>
                       Email:{" "}
@@ -353,8 +351,7 @@ export default function PrivacyPage() {
                   <p>
                     {LEGAL_NAME}
                     <br />
-                    8-39/1, Narayanapuram Colony, Dammaiguda, Nagaram (K.V. Rangareddy), Hyderabad,
-                    Telangana 500083, India
+                    Hyderabad, Telangana, India
                     <br />
                     Email:{" "}
                     <a href={`mailto:${CONTACT_EMAIL}`} className={linkClass}>
