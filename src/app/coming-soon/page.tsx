@@ -120,7 +120,7 @@ export default function ComingSoonPage() {
 
       <div className="relative z-10 border-t border-[rgba(255,255,255,0.05)] py-5 text-center">
         <span className="font-mono text-[11px] text-[rgba(78,90,108,0.65)]">
-          © {new Date().getFullYear()} Octmark Technologies
+          © {new Date().getFullYear()} Octmark Technologies India Private Limited
         </span>
       </div>
     </main>

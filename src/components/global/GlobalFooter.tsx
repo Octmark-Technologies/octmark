@@ -50,7 +50,7 @@ export default function GlobalFooter() {
                 className="h-[30px] w-auto block"
               />
             </Link>
-            <p className="text-[13px] text-[#4E5A6C] leading-relaxed">
+            <p className="text-[13px] text-[#8A96A8] leading-relaxed">
               Fewer guesses. More growth.
             </p>
             {/* Social */}
@@ -63,7 +63,7 @@ export default function GlobalFooter() {
                 className="flex flex-col items-center gap-1 group"
               >
                 <svg
-                  className="w-[18px] h-[18px] stroke-[#4E5A6C] group-hover:stroke-[#8A96A8] transition-colors"
+                  className="w-[18px] h-[18px] stroke-[#8A96A8] group-hover:stroke-[#EEF1F7] transition-colors"
                   viewBox="0 0 24 24"
                   fill="none"
                   strokeWidth="1.5"
@@ -73,7 +73,7 @@ export default function GlobalFooter() {
                   <rect x="2" y="9" width="4" height="12" />
                   <circle cx="4" cy="4" r="2" />
                 </svg>
-                <span className="text-[10px] text-[#4E5A6C] group-hover:text-[#8A96A8] tracking-[0.04em] transition-colors">
+                <span className="text-[10px] text-[#8A96A8] group-hover:text-[#EEF1F7] tracking-[0.04em] transition-colors">
                   LinkedIn
                 </span>
               </a>
@@ -85,7 +85,7 @@ export default function GlobalFooter() {
                 className="flex flex-col items-center gap-1 group"
               >
                 <svg
-                  className="w-[18px] h-[18px] stroke-[#4E5A6C] group-hover:stroke-[#8A96A8] transition-colors"
+                  className="w-[18px] h-[18px] stroke-[#8A96A8] group-hover:stroke-[#EEF1F7] transition-colors"
                   viewBox="0 0 24 24"
                   fill="none"
                   strokeWidth="1.5"
@@ -95,7 +95,7 @@ export default function GlobalFooter() {
                   <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
                   <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
                 </svg>
-                <span className="text-[10px] text-[#4E5A6C] group-hover:text-[#8A96A8] tracking-[0.04em] transition-colors">
+                <span className="text-[10px] text-[#8A96A8] group-hover:text-[#EEF1F7] tracking-[0.04em] transition-colors">
                   Instagram
                 </span>
               </a>
@@ -163,12 +163,32 @@ export default function GlobalFooter() {
 
       {/* Bottom bar */}
       <div className="mx-auto max-w-[1280px] px-6 md:px-10 lg:px-20 mt-10 py-5 border-t border-[rgba(255,255,255,0.05)] flex items-center justify-between gap-4 flex-wrap">
-        <span className="font-mono text-[11px] text-[rgba(78,90,108,0.65)]">
-          © {new Date().getFullYear()} Octmark Technologies · Privacy · Terms
+        <span className="font-mono text-[11px] text-[#8A96A8]">
+          © {new Date().getFullYear()} Octmark Technologies India Private Limited ·{" "}
+          <a
+            href="https://octrackit.com"
+            className="hover:text-[#EEF1F7] hover:underline transition-colors duration-150"
+          >
+            Octrackit
+          </a>{" "}
+          ·{" "}
+          <Link
+            href="/privacy"
+            className="hover:text-[#EEF1F7] hover:underline transition-colors duration-150"
+          >
+            Privacy
+          </Link>{" "}
+          ·{" "}
+          <Link
+            href="/terms"
+            className="hover:text-[#EEF1F7] hover:underline transition-colors duration-150"
+          >
+            Terms
+          </Link>
         </span>
         <a
           href="#"
-          className="text-[13px] text-[#4E5A6C] hover:text-[#8A96A8] hover:underline transition-colors duration-150"
+          className="text-[13px] text-[#8A96A8] hover:text-[#EEF1F7] hover:underline transition-colors duration-150"
         >
           Back to top ↑
         </a>

@@ -35,8 +35,8 @@ export default function BookingEmbed({ frame = "card", height = "600px" }: Booki
 
   const wrapperClass =
     frame === "glow"
-      ? "relative rounded-2xl bg-white p-2 md:p-3 shadow-[0_0_0_1px_rgba(255,255,255,0.06),0_30px_80px_-20px_rgba(1,69,132,0.55)]"
-      : "rounded-xl border border-[#E0E5EC] bg-white p-2 md:p-3 shadow-[0_1px_3px_rgba(0,0,0,0.04),0_4px_12px_rgba(0,0,0,0.06)]";
+      ? "relative w-full rounded-2xl bg-white p-2 md:p-3 shadow-[0_0_0_1px_rgba(255,255,255,0.06),0_30px_80px_-20px_rgba(1,69,132,0.55)]"
+      : "w-full rounded-xl border border-[#E0E5EC] bg-white p-2 md:p-3 shadow-[0_1px_3px_rgba(0,0,0,0.04),0_4px_12px_rgba(0,0,0,0.06)]";
 
   return (
     <div className={wrapperClass}>
@@ -60,7 +60,7 @@ export default function BookingEmbed({ frame = "card", height = "600px" }: Booki
       )}
       <div
         id="inline-container"
-        className="overflow-hidden rounded-[8px]"
+        className="w-full overflow-y-hidden overflow-x-auto rounded-[8px]"
         style={ready ? undefined : { position: "absolute", width: 1, height: 1, overflow: "hidden", opacity: 0 }}
       />
       <Script

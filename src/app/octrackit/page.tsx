@@ -149,6 +149,7 @@ export default function OctrackitPage() {
     publisher: {
       "@type": "Organization",
       name: "Octmark Technologies",
+      legalName: "Octmark Technologies India Private Limited",
       url: baseUrl,
       logo: { "@type": "ImageObject", url: `${baseUrl}/images/OCTMARK_LOGO.png` },
     },
@@ -233,6 +234,9 @@ export default function OctrackitPage() {
                 <Link href="/octrackit/cortex" className="text-[14px] text-[#8A96A8] hover:text-[#EEF1F7] hover:underline font-sans transition-colors">
                   See how Cortex works →
                 </Link>
+                <a href="https://octrackit.com" className="text-[14px] text-[#8A96A8] hover:text-[#EEF1F7] hover:underline font-sans transition-colors">
+                  Visit octrackit.com →
+                </a>
               </div>
               {/* Trust strip */}
               <div className="flex flex-wrap gap-x-6 gap-y-2 text-[12px] text-[#4E5A6C] font-mono uppercase tracking-[0.06em]">

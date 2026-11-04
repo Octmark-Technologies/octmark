@@ -107,6 +107,7 @@ export default function CortexPage() {
     publisher: {
       "@type": "Organization",
       name: "Octmark Technologies",
+      legalName: "Octmark Technologies India Private Limited",
       url: baseUrl,
       logo: { "@type": "ImageObject", url: `${baseUrl}/images/OCTMARK_LOGO.png` },
     },

@@ -1,4 +1,5 @@
 import type { NextConfig } from "next";
+import path from "path";
 
 const isDev = process.env.NODE_ENV !== "production";
 
@@ -16,6 +17,24 @@ const csp = [
   `font-src 'self' data:`,
   `frame-src https://challenges.cloudflare.com`,
   `connect-src 'self' https://challenges.cloudflare.com${isDev ? " ws:" : ""}`,
+  `object-src 'none'`,
+  `base-uri 'self'`,
+  `form-action 'self'`,
+  `frame-ancestors 'none'`,
+  ...(isDev ? [] : [`upgrade-insecure-requests`]),
+].join("; ");
+
+// Scoped override for the realtor landing page's Zoho Bookings embed
+// (bookings.nimbuspop.com script + octmark.zohobookings.in iframe), which
+// the site-wide CSP above does not allow. Kept off the rest of the site.
+const bookingCsp = [
+  `default-src 'self'`,
+  `script-src 'self' 'unsafe-inline' https://challenges.cloudflare.com https://bookings.nimbuspop.com${isDev ? " 'unsafe-eval'" : ""}`,
+  `style-src 'self' 'unsafe-inline'`,
+  `img-src 'self' data: https:`,
+  `font-src 'self' data:`,
+  `frame-src https://challenges.cloudflare.com https://*.zohobookings.in`,
+  `connect-src 'self' https://challenges.cloudflare.com https://bookings.nimbuspop.com https://*.zohobookings.in${isDev ? " ws:" : ""}`,
   `object-src 'none'`,
   `base-uri 'self'`,
   `form-action 'self'`,
@@ -44,8 +63,17 @@ const securityHeaders = [
 ];
 
 const nextConfig: NextConfig = {
+  turbopack: {
+    root: path.resolve(__dirname),
+  },
   async headers() {
-    return [{ source: "/:path*", headers: securityHeaders }];
+    return [
+      { source: "/:path*", headers: securityHeaders },
+      {
+        source: "/digital-marketing-for-realtors",
+        headers: [{ key: "Content-Security-Policy", value: bookingCsp }],
+      },
+    ];
   },
   async redirects() {
     // Products section moved from /platform to /products. Permanent (301) so

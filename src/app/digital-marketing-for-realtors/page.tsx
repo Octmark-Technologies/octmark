@@ -9,12 +9,10 @@ import {
   Database,
   WhatsappLogo,
   Robot,
-  ShieldCheck,
-  MapPin,
 } from "@phosphor-icons/react/dist/ssr";
-import GlobalHeader from "@/components/global/GlobalHeader";
 import GlobalFooter from "@/components/global/GlobalFooter";
 import FeatureIcon from "@/components/graphics/FeatureIcon";
+import FlagIcon from "@/components/graphics/FlagIcon";
 import GradientOrb from "@/components/graphics/GradientOrb";
 import DotGrid from "@/components/graphics/DotGrid";
 import BookingEmbed from "@/components/sections/BookingEmbed";
@@ -51,6 +49,8 @@ export const metadata: Metadata = {
 
 const ONE_PARAGRAPH =
   "Octmark provides digital marketing for realtors, including Meta & Google advertising, lead generation, landing pages, CRM setup, WhatsApp automation, optional AI calling, and Octrackit lead-quality tracking, for real estate agents across the United States, Canada, United Kingdom, UAE, and India.";
+
+const TRUST_FACTS = ["Free 30-minute call", "No pitch deck", "Real estate only"];
 
 const PROBLEM_POINTS = [
   "Not because their listings are better.",
@@ -89,15 +89,15 @@ const WHAT_WE_DO = [
     label: "AI Calling (optional)",
     desc: "AI-handled calls that qualify leads and follow up around the clock.",
   },
-  {
-    icon: ShieldCheck,
-    label: "Octrackit",
-    logo: true,
-    desc: "Our own tool that blocks fake leads, cuts your ad spend, and shows you exactly what's working in your business.",
-  },
 ];
 
-const MARKETS = ["United States", "Canada", "United Kingdom", "UAE", "India"];
+const MARKETS = [
+  { name: "India", country: "IN" as const },
+  { name: "United States", country: "US" as const },
+  { name: "Canada", country: "CA" as const },
+  { name: "United Kingdom", country: "GB" as const },
+  { name: "UAE", country: "AE" as const },
+];
 
 const WHY_OCTMARK = [
   {
@@ -150,6 +150,7 @@ export default function DigitalMarketingForRealtorsPage() {
     provider: {
       "@type": "Organization",
       name: "Octmark Technologies",
+      legalName: "Octmark Technologies India Private Limited",
       url: baseUrl,
       logo: { "@type": "ImageObject", url: `${baseUrl}/images/OCTMARK_LOGO.png` },
     },
@@ -172,10 +173,35 @@ export default function DigitalMarketingForRealtorsPage() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceJsonLd) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
 
-      <GlobalHeader darkHero />
+      <a href="#main" className="skip-link">
+        Skip to main content
+      </a>
+
+      {/* Minimal landing-page nav: logo + single CTA, no mega-menu, nothing to click away to */}
+      <header className="relative z-20" style={{ background: "#070D1A" }}>
+        <div className="mx-auto flex max-w-[1280px] items-center justify-between px-6 py-6 md:px-10 lg:px-20">
+          <Link href="/" aria-label="Octmark, Home">
+            <Image
+              src="/images/OCTMARK_LOGO_WHITE.png"
+              alt="Octmark"
+              height={34}
+              width={136}
+              priority
+              className="h-[28px] w-auto md:h-[32px]"
+            />
+          </Link>
+          <a
+            href="#booking"
+            className="inline-flex h-10 items-center gap-2 rounded-lg bg-[#014584] px-5 font-display text-[14px] tracking-[0.02em] text-white transition-colors hover:bg-[#0157A8]"
+          >
+            Book Your Free Strategy Call
+          </a>
+        </div>
+      </header>
+
       <main id="main" className="flex-1">
 
-        {/* ── 1. HERO ───────────────────────────────────────────── */}
+        {/* ── 1. HERO (asymmetric: copy left, proof panel right) ─── */}
         <section
           className="relative overflow-hidden"
           style={{
@@ -190,20 +216,20 @@ export default function DigitalMarketingForRealtorsPage() {
             <GradientOrb tone="coral" size={360} intensity={0.07} className="bottom-[8%] left-[6%]" />
           </Parallax>
 
-          <div className="relative z-10 mx-auto max-w-[860px] px-6 md:px-10 lg:px-20 pt-[150px] pb-24 text-center">
+          <div className="relative z-10 mx-auto max-w-[1280px] px-6 md:px-10 lg:px-20 pt-6 pb-24 md:pt-10 grid grid-cols-1 lg:grid-cols-[6fr_5fr] gap-14 lg:gap-16 items-center">
             <Reveal>
               <span className="stag stag-on-dark">DIGITAL MARKETING AGENCY FOR REALTORS</span>
-              <h1 className="font-display text-[38px] lg:text-[54px] leading-[1.08] tracking-[-1px] text-[#EEF1F7] mt-2 mb-6">
+              <h1 className="font-display text-[38px] lg:text-[52px] leading-[1.08] tracking-[-1px] text-[#EEF1F7] mt-2 mb-6">
                 Digital Marketing for Realtors:{" "}
                 <span className="text-[#FEA781]" style={{ textShadow: "0 0 24px rgba(254,167,129,0.30)" }}>
                   more buyers, less guesswork.
                 </span>
               </h1>
-              <p className="mx-auto text-[18px] lg:text-[19px] text-[#8A96A8] leading-[1.65] font-sans max-w-[540px] mb-8">
+              <p className="text-[18px] lg:text-[19px] text-[#8A96A8] leading-[1.65] font-sans max-w-[480px] mb-8">
                 We build the digital system that puts your listings in front of
                 the right buyers, and keeps them there.
               </p>
-              <div className="flex flex-wrap items-center justify-center gap-4 mb-9">
+              <div className="flex flex-wrap items-center gap-4">
                 <a
                   href="#booking"
                   className="inline-flex items-center gap-2 h-12 px-7 bg-[#014584] text-white font-display text-[15px] tracking-[0.02em] rounded-lg transition-all hover:bg-[#0157A8] hover:shadow-[0_0_0_1px_rgba(1,69,132,0.6),0_4px_20px_rgba(1,69,132,0.45)]"
@@ -214,23 +240,45 @@ export default function DigitalMarketingForRealtorsPage() {
                   See what&rsquo;s included →
                 </Link>
               </div>
-              {/* Trust strip */}
-              <div className="flex flex-wrap justify-center gap-x-6 gap-y-2 text-[12px] text-[#4E5A6C] font-mono uppercase tracking-[0.06em]">
-                <span>Free 30-minute call</span>
-                <span>No pitch deck</span>
-                <span>5 markets served</span>
-                <span>Real estate only</span>
+            </Reveal>
+
+            <Reveal delay={0.15}>
+              <div className="rounded-2xl border border-white/[0.08] bg-white/[0.04] p-6 lg:p-7">
+                <span className="block text-[11px] uppercase tracking-[0.12em] text-[#8A96A8] font-semibold mb-4">
+                  Where we work
+                </span>
+                <div className="flex flex-wrap gap-2 mb-6">
+                  {MARKETS.map((m) => (
+                    <span
+                      key={m.name}
+                      className="inline-flex items-center gap-1.5 rounded-full bg-white/[0.06] pl-1.5 pr-3 py-1.5 text-[12px] text-[#EEF1F7] font-sans"
+                    >
+                      <FlagIcon country={m.country} size={18} />
+                      {m.name}
+                    </span>
+                  ))}
+                </div>
+                <div className="space-y-3 border-t border-white/[0.08] pt-5">
+                  {TRUST_FACTS.map((t) => (
+                    <div key={t} className="flex items-center gap-2.5">
+                      <span className="flex-shrink-0 inline-flex items-center justify-center w-5 h-5 rounded-full bg-[#4D9FE0]/15 text-[#4D9FE0]">
+                        <Check size={11} strokeWidth={3} />
+                      </span>
+                      <span className="text-[13px] text-[#C4CCD8] font-sans">{t}</span>
+                    </div>
+                  ))}
+                </div>
               </div>
             </Reveal>
           </div>
         </section>
 
-        {/* ── 2. THE PROBLEM ────────────────────────────────────── */}
+        {/* ── 2. THE PROBLEM (text left, point list right) ──────── */}
         <section className="bg-white py-20 lg:py-24">
-          <div className="mx-auto max-w-[1280px] px-6 md:px-10 lg:px-20">
-            <Reveal className="max-w-[760px]">
+          <div className="mx-auto max-w-[1280px] px-6 md:px-10 lg:px-20 grid grid-cols-1 lg:grid-cols-[5fr_7fr] gap-12 lg:gap-16 items-start">
+            <Reveal>
               <span className="stag">THE PROBLEM</span>
-              <h2 className="font-display text-[30px] lg:text-[40px] text-[#3E3E3E] tracking-[-0.5px] leading-[1.15] mt-1 mb-5">
+              <h2 className="font-display text-[30px] lg:text-[38px] text-[#3E3E3E] tracking-[-0.5px] leading-[1.15] mt-1 mb-5">
                 It&rsquo;s not about being better. It&rsquo;s about being seen first.
               </h2>
               <p className="text-[17px] text-[#52525B] font-sans leading-[1.7]">
@@ -238,11 +286,11 @@ export default function DigitalMarketingForRealtorsPage() {
               </p>
             </Reveal>
 
-            <Stagger className="grid grid-cols-1 md:grid-cols-3 gap-5 mt-12" stagger={0.1}>
+            <Stagger className="space-y-3" stagger={0.1}>
               {PROBLEM_POINTS.map((p) => (
                 <StaggerItem key={p}>
-                  <div className="h-full rounded-xl border border-[#E5E8EE] bg-[#F8F9FC] p-6">
-                    <span className="block w-9 h-1 rounded bg-[#FEA781] mb-4" />
+                  <div className="flex items-start gap-4 rounded-xl border border-[#E5E8EE] bg-[#F8F9FC] p-5">
+                    <span className="mt-2 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-[#FEA781]" />
                     <p className="text-[15px] text-[#52525B] font-sans leading-[1.6]">{p}</p>
                   </div>
                 </StaggerItem>
@@ -251,10 +299,10 @@ export default function DigitalMarketingForRealtorsPage() {
           </div>
         </section>
 
-        {/* ── 3. WHAT WE DO ─────────────────────────────────────── */}
+        {/* ── 3. WHAT WE DO (Octrackit banner + supporting grid) ─── */}
         <section id="what-we-do" className="bg-[#F2F5F9] py-20 lg:py-24">
           <div className="mx-auto max-w-[1280px] px-6 md:px-10 lg:px-20">
-            <Reveal className="mb-12 max-w-[640px]">
+            <Reveal className="mb-10 max-w-[640px]">
               <span className="stag">WHAT WE DO</span>
               <h2 className="font-display text-[30px] lg:text-[40px] text-[#3E3E3E] tracking-[-0.5px] leading-[1.15] mt-1 mb-3">
                 One system. Every piece connected.
@@ -264,21 +312,27 @@ export default function DigitalMarketingForRealtorsPage() {
               </p>
             </Reveal>
 
+            <Reveal className="mb-6">
+              <div className="flex flex-col md:flex-row md:items-center gap-6 rounded-2xl border border-[#4D9FE0]/25 bg-white p-7 lg:p-8">
+                <Image
+                  src="/images/octrackit-light.png"
+                  alt="Octrackit"
+                  width={220}
+                  height={110}
+                  className="h-11 w-auto flex-shrink-0"
+                />
+                <p className="text-[15px] text-[#52525B] font-sans leading-[1.65]">
+                  Our own tool that blocks fake leads, cuts your ad spend, and shows you exactly
+                  what&rsquo;s working in your business.
+                </p>
+              </div>
+            </Reveal>
+
             <Stagger className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5" stagger={0.08}>
               {WHAT_WE_DO.map((item) => (
                 <StaggerItem key={item.label}>
                   <div className="h-full bg-white rounded-xl border border-[#E5E8EE] p-6 transition-all duration-150 hover:border-[#014584] hover:-translate-y-0.5 hover:shadow-[0_4px_24px_rgba(1,69,132,0.08)]">
-                    {item.logo ? (
-                      <Image
-                        src="/images/octrackit-light.png"
-                        alt="Octrackit"
-                        width={168}
-                        height={84}
-                        className="h-9 w-auto mb-4"
-                      />
-                    ) : (
-                      <FeatureIcon icon={item.icon} tone="light" size={46} className="mb-4" />
-                    )}
+                    <FeatureIcon icon={item.icon} tone="light" size={46} className="mb-4" />
                     <h3 className="font-display text-[18px] text-[#3E3E3E] leading-snug mb-2">{item.label}</h3>
                     <p className="text-[14px] text-[#52525B] font-sans leading-[1.6]">{item.desc}</p>
                   </div>
@@ -303,29 +357,15 @@ export default function DigitalMarketingForRealtorsPage() {
           </div>
         </section>
 
-        {/* ── 5. WHO IT'S FOR ───────────────────────────────────── */}
+        {/* ── 5. WHO IT'S FOR (text left, market cluster right) ─── */}
         <section className="bg-white py-20 lg:py-24">
-          <div className="mx-auto max-w-[1280px] px-6 md:px-10 lg:px-20">
-            <Reveal className="mb-12 max-w-[640px]">
+          <div className="mx-auto max-w-[1280px] px-6 md:px-10 lg:px-20 grid grid-cols-1 lg:grid-cols-[5fr_7fr] gap-12 lg:gap-16 items-center">
+            <Reveal>
               <span className="stag">WHO IT&rsquo;S FOR</span>
-              <h2 className="font-display text-[30px] lg:text-[40px] text-[#3E3E3E] tracking-[-0.5px] leading-[1.15] mt-1">
+              <h2 className="font-display text-[30px] lg:text-[38px] text-[#3E3E3E] tracking-[-0.5px] leading-[1.15] mt-1 mb-4">
                 We work exclusively with realtors.
               </h2>
-            </Reveal>
-
-            <Stagger className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-5" stagger={0.09}>
-              {MARKETS.map((market) => (
-                <StaggerItem key={market}>
-                  <div className="h-full rounded-xl border border-[#E5E8EE] p-6 text-center">
-                    <FeatureIcon icon={MapPin} tone="light" size={44} className="mb-4 mx-auto" />
-                    <h3 className="font-display text-[16px] text-[#3E3E3E] leading-snug">{market}</h3>
-                  </div>
-                </StaggerItem>
-              ))}
-            </Stagger>
-
-            <Reveal delay={0.1}>
-              <p className="mt-8 text-[14px] text-[#52525B] font-sans">
+              <p className="text-[14px] text-[#52525B] font-sans">
                 See how this fits our{" "}
                 <Link href="/industries#real-estate" className="text-[#014584] hover:underline">
                   real estate industry approach
@@ -333,15 +373,26 @@ export default function DigitalMarketingForRealtorsPage() {
                 .
               </p>
             </Reveal>
+
+            <Stagger className="grid grid-cols-3 sm:grid-cols-5 gap-4" stagger={0.09}>
+              {MARKETS.map((market) => (
+                <StaggerItem key={market.name}>
+                  <div className="h-full rounded-xl border border-[#E5E8EE] p-5 text-center">
+                    <FlagIcon country={market.country} size={38} className="mb-3 mx-auto" />
+                    <h3 className="font-display text-[14px] text-[#3E3E3E] leading-snug">{market.name}</h3>
+                  </div>
+                </StaggerItem>
+              ))}
+            </Stagger>
           </div>
         </section>
 
-        {/* ── 6. WHY OCTMARK ────────────────────────────────────── */}
+        {/* ── 6. WHY OCTMARK (centered intro + 3-card row) ──────── */}
         <section className="bg-[#F2F5F9] py-20 lg:py-24">
-          <div className="mx-auto max-w-[1280px] px-6 md:px-10 lg:px-20 grid grid-cols-1 lg:grid-cols-[5fr_7fr] gap-12 lg:gap-16">
-            <Reveal>
+          <div className="mx-auto max-w-[1280px] px-6 md:px-10 lg:px-20">
+            <Reveal className="mx-auto mb-12 max-w-[640px] text-center">
               <span className="stag">WHY OCTMARK</span>
-              <h2 className="font-display text-[30px] lg:text-[40px] text-[#3E3E3E] tracking-[-0.5px] leading-[1.15] mt-1 mb-4">
+              <h2 className="font-display text-[30px] lg:text-[40px] text-[#3E3E3E] tracking-[-0.5px] leading-[1.15] mt-1 mb-3">
                 We run the system. You run the business.
               </h2>
               <p className="text-[16px] text-[#52525B] font-sans leading-[1.7]">
@@ -350,17 +401,15 @@ export default function DigitalMarketingForRealtorsPage() {
               </p>
             </Reveal>
 
-            <Stagger className="space-y-3" stagger={0.08}>
+            <Stagger className="grid grid-cols-1 md:grid-cols-3 gap-5" stagger={0.08}>
               {WHY_OCTMARK.map((w) => (
                 <StaggerItem key={w.title}>
-                  <div className="flex items-start gap-4 bg-white rounded-xl border border-[#E5E8EE] p-5">
-                    <span className="flex-shrink-0 inline-flex items-center justify-center w-7 h-7 rounded-full bg-[rgba(1,69,132,0.08)] text-[#014584]">
-                      <Check size={15} strokeWidth={2.5} />
+                  <div className="h-full bg-white rounded-xl border border-[#E5E8EE] p-6">
+                    <span className="mb-4 flex h-8 w-8 items-center justify-center rounded-full bg-[rgba(1,69,132,0.08)] text-[#014584]">
+                      <Check size={16} strokeWidth={2.5} />
                     </span>
-                    <div>
-                      <h3 className="font-display text-[16px] text-[#3E3E3E] leading-snug">{w.title}</h3>
-                      <p className="text-[14px] text-[#52525B] font-sans leading-[1.6] mt-1">{w.desc}</p>
-                    </div>
+                    <h3 className="font-display text-[17px] text-[#3E3E3E] leading-snug mb-2">{w.title}</h3>
+                    <p className="text-[14px] text-[#52525B] font-sans leading-[1.6]">{w.desc}</p>
                   </div>
                 </StaggerItem>
               ))}
@@ -402,12 +451,12 @@ export default function DigitalMarketingForRealtorsPage() {
             <GradientOrb tone="coral" size={420} intensity={0.1} className="bottom-[-80px] right-[8%]" />
             <GradientOrb tone="blue" size={460} intensity={0.14} className="top-[-60px] left-[10%]" />
           </Parallax>
-          <div className="relative z-10 mx-auto max-w-[900px] px-6 md:px-10 text-center">
+          <div className="relative z-10 mx-auto max-w-[1180px] px-6 md:px-10 text-center">
             <Reveal>
               <h2 className="font-display text-[32px] lg:text-[46px] text-[#EEF1F7] tracking-[-0.75px] leading-[1.1] mb-4">
                 See what this looks like for your market.
               </h2>
-              <p className="text-[17px] text-[#8A96A8] font-sans leading-[1.65] mb-9 max-w-[540px] mx-auto">
+              <p className="mx-auto mb-9 max-w-[540px] text-[17px] text-[#8A96A8] font-sans leading-[1.65]">
                 Free. 30 minutes. No pitch.
               </p>
             </Reveal>

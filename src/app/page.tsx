@@ -14,7 +14,7 @@ import {
   TrendUp as TrendingUp,
   Brain,
 } from "@phosphor-icons/react/dist/ssr";
-import { getAllCaseStudies } from "@/lib/content";
+import { getAllCaseStudies, getFeaturedCaseStudy } from "@/lib/content";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -24,6 +24,8 @@ export const metadata: Metadata = {
 
 export default function HomePage() {
   const cases = getAllCaseStudies().slice(0, 3);
+  const featured = getFeaturedCaseStudy() ?? cases[0];
+  const proofMetric = featured.metrics[1] ?? featured.metrics[0];
 
   return (
     <>
@@ -83,12 +85,12 @@ export default function HomePage() {
                 >
                   Get a free growth audit
                 </Link>
-                <Link href="/results" className="text-[13px] text-[#4E5A6C] hover:text-[#8A96A8] hover:underline transition-colors duration-150 font-sans">
+                <Link href="/results" className="text-[13px] text-[#8A96A8] hover:text-[#EEF1F7] hover:underline transition-colors duration-150 font-sans">
                   See our results →
                 </Link>
               </ScrollReveal>
               <ScrollReveal delay={2}>
-                <p className="text-[13px] text-[#4E5A6C] leading-[1.6] max-w-[420px] font-sans">
+                <p className="text-[13px] text-[#8A96A8] leading-[1.6] max-w-[420px] font-sans">
                   We review your growth stack and tell you exactly what we see, including if your growth challenge needs something we don't offer. Response within 2 business days.
                 </p>
               </ScrollReveal>
@@ -109,11 +111,11 @@ export default function HomePage() {
             <ScrollReveal className="max-w-[460px]">
               <span className="stag">PROOF</span>
               <div className="font-mono text-[64px] font-medium text-[#3E3E3E] tracking-[-1.5px] leading-none mt-2.5 mb-1.5">
-                2.8×
+                {proofMetric.value}
               </div>
               <div className="w-[52px] h-px bg-[#E0E5EC] my-2.5" />
-              <p className="text-[18px] text-[#3E3E3E] mb-2">Qualified pipeline growth</p>
-              <p className="text-[13px] text-[#9AA3B2] font-sans">Growth-stage B2B SaaS · 90 days</p>
+              <p className="text-[18px] text-[#3E3E3E] mb-2">{proofMetric.label}</p>
+              <p className="text-[13px] text-[#9AA3B2] font-sans">{featured.industry} · {featured.stage}</p>
             </ScrollReveal>
           </div>
         </section>
@@ -198,7 +200,7 @@ export default function HomePage() {
                 transition-all duration-150
                 hover:bg-[#0157A8] hover:shadow-[0_0_0_1px_rgba(1,69,132,0.55),0_4px_16px_rgba(1,69,132,0.35)]"
             >
-              Start a conversation →
+              Get your growth audit →
             </Link>
           </div>
         </section>
@@ -377,6 +379,10 @@ export default function HomePage() {
               >
                 Get a free growth audit
               </Link>
+              <p className="mt-6 text-[13px] text-[#8A96A8] font-sans">
+                Already know you want to see the platform?{" "}
+                <Link href="/demo" className="text-[#4D9FE0] hover:underline">Book a platform demo →</Link>
+              </p>
               <div className="mt-4 flex items-center justify-center gap-6">
                 <Link href="/how-we-work" className="text-[13px] text-[#4D9FE0] hover:underline font-sans">Book a 30-minute call</Link>
                 <span className="text-[#4E5A6C] text-sm">·</span>
